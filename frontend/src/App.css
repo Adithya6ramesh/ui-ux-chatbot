@@ -48,8 +48,10 @@ header h1 {
 
 header p {
     color: #000;
-    font-size: 1.2rem;
+    font-size: 3rem;
     font-family: 'Playfair Display', serif;
+    font-weight: 800
+
 }
 
 .btn-signout {
@@ -244,28 +246,68 @@ main {
 }
 
 .App-header {
-  margin-bottom: 2rem;
   position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-.App-header h1 {
+.logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.logo-container h1 {
   color: #000;
-  font-size: 5.5rem;
+  font-size: 1.5rem;
   font-family: 'Lobster', cursive;
-  margin-bottom: 0.5rem;
+  margin: 0;
+  margin-left: -10px;
+  padding: 0;
 }
 
-.App-header p {
+.logo-corner {
+  height: 50px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.header-links {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.taglines {
+  text-align: center;
+  margin-top: 80px; /* Adjust as needed to be below the logo/title */
+}
+
+.main-tagline {
   color: #000;
-  font-size: 1.2rem;
+  font-size: 3rem;
   font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.sub-tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: normal;
 }
 
 .signup-link-corner {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  position: static;
+  margin-left: 10px;
   color: #000;
   text-decoration: none;
   font-weight: 600;
@@ -284,9 +326,7 @@ main {
 }
 
 .pricing-link-corner {
-  position: fixed;
-  top: 20px;
-  right: 110px;
+  position: static;
   color: #000;
   text-decoration: none;
   font-weight: 600;
@@ -556,9 +596,6 @@ button:hover:not(:disabled) {
 }
 
 .logo-corner {
-  position: fixed;
-  top: 20px;
-  left: 20px;
   height: 60px;
   width: 100px;
   z-index: 1001;

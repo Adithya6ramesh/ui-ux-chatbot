@@ -27,11 +27,18 @@ function App() {
                             <ProtectedRoute>
                                 <>
                                     <header className="App-header">
-                                        <img src={logo} alt="Logo" className="logo-corner" />
-                                        <Link to="/login" className="signup-link-corner">Sign In</Link>
-                                        <Link to="/pricing" className="pricing-link-corner">Pricing</Link>
-                                        <h1>Blinky</h1>
-                                        <p>Let Blinky blink for better design!</p>
+                                        <div className="logo-container">
+                                            <img src={logo} alt="Logo" className="logo-corner" />
+                                            <h1>Blinky</h1>
+                                        </div>
+                                        <div className="header-links">
+                                            <Link to="/login" className="signup-link-corner">Sign In</Link>
+                                            <Link to="/pricing" className="pricing-link-corner">Pricing</Link>
+                                        </div>
+                                        <div className="taglines">
+                                            <p className="main-tagline">Know your design. Inside out</p>
+                                            <p className="sub-tagline">AI-powered insights to perfect your UI and deliver user-first experiences.</p>
+                                        </div>
                                     </header>
                                     <HomePage />
                                 </>
