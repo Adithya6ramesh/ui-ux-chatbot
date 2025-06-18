@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { signInUser, signInWithGoogle, resetPassword } from '../services/authService';
 import './../styles/LoginPage.css';
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        // Check for Google auth error in URL parameters
+        const urlParams = new URLSearchParams(location.search);
+        if (urlParams.get('error') === 'google_auth_failed') {
+            setError('Google authentication failed. Please try again.');
+        }
+    }, [location]);
 
     const handleLogin = async () => {
         // Clear previous errors
@@ -37,7 +46,7 @@ const LoginPage = () => {
                 setError(error);
             } else {
                 // Successfully logged in
-                navigate('/home');
+                navigate('/');
             }
         } catch (err) {
             setError('An unexpected error occurred. Please try again.');
@@ -51,15 +60,17 @@ const LoginPage = () => {
         setError('');
 
         try {
+            console.log('Initiating Google sign-in...');
             const { user, error } = await signInWithGoogle();
             
             if (error) {
                 setError(error);
-            } else {
+            } else if (user) {
                 // Successfully logged in with Google
-                navigate('/home');
+                navigate('/');
             }
         } catch (err) {
+            console.error('Google login error:', err);
             setError('Google login failed. Please try again.');
         } finally {
             setLoading(false);

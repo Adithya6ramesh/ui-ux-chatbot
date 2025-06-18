@@ -111,7 +111,7 @@ export const signOutUser = async () => {
   }
 };
 
-// Sign in with Google using popup (better user experience)
+// Sign in with Google using popup (to avoid tracking protection issues)
 export const signInWithGoogle = async () => {
   if (DEV_MODE) {
     // Mock Google sign-in success - but only when this function is called
@@ -140,18 +140,54 @@ export const signInWithGoogle = async () => {
     provider.addScope('email');
     provider.addScope('profile');
     
-    // Use popup method for better user experience
-    const result = await signInWithPopup(auth, provider);
+    // Configure provider settings to help with tracking protection and COOP
+    provider.setCustomParameters({
+      prompt: 'select_account',
+      // Add this to help with COOP issues
+      hd: undefined // Removes domain hint that can cause COOP issues
+    });
+    
+    // Use popup method - suppress the COOP warning by catching it
+    let result;
+    try {
+      result = await signInWithPopup(auth, provider);
+    } catch (popupError) {
+      // If it's just a COOP warning but auth succeeded, check auth state
+      if (popupError.message.includes('Cross-Origin-Opener-Policy') || 
+          popupError.message.includes('window.closed')) {
+        // Wait a moment and check if user is actually signed in
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const currentUser = auth.currentUser;
+        if (currentUser) {
+          return { user: currentUser, error: null };
+        }
+      }
+      throw popupError; // Re-throw if it's a real error
+    }
+    
     return { user: result.user, error: null };
     
   } catch (error) {
     console.error('Google sign in error:', error);
     let errorMessage = error.message;
     
-    if (error.code === 'auth/popup-closed-by-user') {
+    // Don't show COOP errors to users as they're just warnings
+    if (error.message.includes('Cross-Origin-Opener-Policy') || 
+        error.message.includes('window.closed')) {
+      // Check if user is actually signed in despite the warning
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        return { user: currentUser, error: null };
+      }
+      errorMessage = 'Authentication completed, but there was a browser security warning.';
+    } else if (error.code === 'auth/popup-closed-by-user') {
       errorMessage = 'Sign-in was cancelled.';
     } else if (error.code === 'auth/popup-blocked') {
-      errorMessage = 'Popup was blocked by browser. Please allow popups for this site.';
+      errorMessage = 'Popup was blocked by browser. Please allow popups for this site and try again.';
+    } else if (error.code === 'auth/cancelled-popup-request') {
+      errorMessage = 'Only one popup request is allowed at a time.';
+    } else if (error.code === 'auth/operation-not-allowed') {
+      errorMessage = 'Google sign-in is not enabled. Please contact support.';
     }
     
     return { user: null, error: errorMessage };

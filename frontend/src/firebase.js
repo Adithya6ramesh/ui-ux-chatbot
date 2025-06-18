@@ -4,11 +4,6 @@ import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// --- DEBUGGING ---
-// Let's check what the environment variable contains.
-console.log("VITE_FIREBASE_API_KEY being used:", import.meta.env.VITE_FIREBASE_API_KEY);
-// --- END DEBUGGING ---
-
 // Your web app's Firebase configuration loaded from environment variables
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,

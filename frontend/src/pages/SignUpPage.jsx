@@ -60,7 +60,7 @@ const SignUpPage = () => {
                 setError(error);
             } else {
                 // Successfully created account
-                navigate('/home');
+                navigate('/');
             }
         } catch (err) {
             setError('An unexpected error occurred. Please try again.');
@@ -80,9 +80,8 @@ const SignUpPage = () => {
                 setError(error);
             } else if (user) {
                 // Successfully signed up with Google
-                navigate('/home');
+                navigate('/');
             }
-            // If user is null and no error, it means redirect was initiated
         } catch (err) {
             setError('Google sign up failed. Please try again.');
         } finally {

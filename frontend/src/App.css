@@ -283,6 +283,9 @@ main {
   position: absolute;
   top: 20px;
   right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .taglines {
@@ -571,13 +574,12 @@ button:hover:not(:disabled) {
   background-color: #000;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: background-color 0.3s, transform 0.2s;
   font-family: 'Playfair Display', serif;
-  min-width: 80px;
 }
 
 .logout-btn:hover {
@@ -600,4 +602,93 @@ button:hover:not(:disabled) {
   width: 100px;
   z-index: 1001;
   object-fit: contain;
+}
+
+.user-greeting {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  color: #000;
+  font-weight: 500;
+}
+
+/* Login Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-content h3 {
+  color: #000;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-family: 'Playfair Display', serif;
+}
+
+.modal-content p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-login-modal {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s;
+  font-family: 'Playfair Display', serif;
+}
+
+.btn-login-modal:hover {
+  background-color: #333;
+  transform: translateY(-1px);
+}
+
+.btn-cancel-modal {
+  background-color: transparent;
+  color: #666;
+  border: 2px solid #ddd;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-family: 'Playfair Display', serif;
+}
+
+.btn-cancel-modal:hover {
+  background-color: #f5f5f5;
+  border-color: #999;
+  color: #333;
 } 
