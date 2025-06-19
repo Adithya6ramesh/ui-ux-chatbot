@@ -1,6 +1,7 @@
 # Blinky - The AI-Powered UI/UX Analyzer
 
 Blinky is a smart UI/UX analyzer chatbot designed to help designers and developers improve their user interfaces. By uploading a design image, users can receive expert-level analysis based on established UI/UX principles. This version features a beautiful custom design with premium typography, modern interface, and **integrated server architecture**.
+[Demo Video](https://www.loom.com/share/7ba3738ffbbf4bf5a6a2a8dc2d2af42f?sid=d061eab7-4c2b-44d2-8c65-002dd164358d)
 
 ## ✨ Features
 
