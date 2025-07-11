@@ -351,9 +351,9 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.3rem;
   background: none;
-  padding: 40px 60px 40px 60px;
+  padding: 60px 80px 60px 80px;
   border: none;
   border-radius: 0;
   box-shadow: none;
@@ -375,12 +375,14 @@ main {
   margin: 0;
   font-weight: 100;
   text-align: center;
+  margin-bottom: 0.3rem;
 }
 
 .file-input-wrapper {
   position: relative;
   overflow: hidden;
   display: inline-block;
+  margin-bottom: 0.3rem;
 }
 
 .file-input-wrapper input[type='file'] {
@@ -422,13 +424,14 @@ button {
   background-color: #000;
   color: white;
   border: none;
-  padding: 0.6rem 1.5rem;
-  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-family: 'DM Serif Display', serif;
+  margin-top: 0.1rem;
 }
 
 button:disabled {
@@ -547,13 +550,13 @@ button:hover:not(:disabled) {
 
 /* Authenticated Header Styles */
 .header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .user-info {
@@ -613,11 +616,11 @@ button:hover:not(:disabled) {
 
 /* Login Modal Styles */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
@@ -651,9 +654,9 @@ button:hover:not(:disabled) {
 }
 
 .modal-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
 .btn-login-modal {
@@ -691,4 +694,276 @@ button:hover:not(:disabled) {
   background-color: #f5f5f5;
   border-color: #999;
   color: #333;
+}
+
+/* Mobile Responsive Styles - Only adjusting positioning and sizing, keeping all visual design the same */
+
+/* Tablet View */
+@media (max-width: 1024px) {
+    .App-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .taglines {
+        margin-top: 70px;
+    }
+    
+    .upload-form {
+        width: 600px;
+        height: 350px;
+        padding: 30px 50px;
+    }
+    
+    main {
+        padding: 30px;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll; /* Better performance on mobile */
+    }
+    
+    .container {
+        padding: 20px 10px;
+    }
+    
+    .App-header {
+        margin-bottom: 1rem;
+        padding: 0 10px;
+    }
+    
+    /* Keep logo in left corner */
+    .logo-container {
+        top: 10px;
+        left: 10px;
+        gap: 5px;
+    }
+    
+    .logo-container h1 {
+        font-size: 1.2rem;
+        margin-left: -5px;
+    }
+    
+    .logo-corner {
+        height: 40px;
+        width: auto;
+    }
+    
+    /* Keep header links in right corner - fix overlap */
+    .header-links {
+        top: 15px;
+        right: 10px;
+        gap: 8px;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .pricing-link-corner,
+    .signup-link-corner {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        margin-left: 0;
+        white-space: nowrap;
+    }
+    
+    /* Keep taglines in middle upper */
+    .taglines {
+        margin-top: 60px;
+        padding: 0 10px;
+    }
+    
+    .main-tagline {
+        font-size: 2.5rem;
+        margin: 0.3rem 0;
+    }
+    
+    .sub-tagline {
+        font-size: 1.2rem;
+    }
+    
+    /* Keep upload form in middle but make it responsive - fix content overflow */
+    .upload-form {
+        width: 90%;
+        max-width: 500px;
+        height: 300px;
+        padding: 40px 40px 40px 40px;
+        margin: 20px auto;
+        gap: 0.25rem;
+    }
+    
+    .choose-file-text {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .file-input-wrapper {
+        margin-bottom: 0.2rem;
+    }
+    
+    .upload-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    button {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+        margin-top: 0.1rem;
+    }
+    
+    main {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+    
+    .analysis-result {
+        padding: 1.5rem 2rem;
+        width: 95%;
+        margin-top: 1.5rem;
+    }
+    
+    .analysis-result h2 {
+        font-size: 1.6rem;
+    }
+    
+    .analysis-result h3,
+    .analysis-result h4,
+    .analysis-result h5,
+    .analysis-result h6 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-content {
+        padding: 25px 20px;
+        margin: 20px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-login-modal,
+    .btn-cancel-modal {
+        width: 100%;
+    }
+}
+
+/* Small Mobile View */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 5px;
+    }
+    
+    .App-header {
+        padding: 0 5px;
+    }
+    
+    /* Adjust logo positioning for very small screens */
+    .logo-container {
+        top: 5px;
+        left: 5px;
+    }
+    
+    .logo-container h1 {
+        font-size: 1rem;
+    }
+    
+    .logo-corner {
+        height: 35px;
+    }
+    
+    /* Adjust header links for very small screens - ensure they stay in line */
+    .header-links {
+        top: 8px;
+        right: 5px;
+        gap: 6px;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .pricing-link-corner,
+    .signup-link-corner {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        white-space: nowrap;
+    }
+    
+    /* Adjust taglines for very small screens */
+    .taglines {
+        margin-top: 50px;
+        padding: 0 5px;
+    }
+    
+    .main-tagline {
+        font-size: 2rem;
+    }
+    
+    .sub-tagline {
+        font-size: 1rem;
+    }
+    
+    /* Adjust upload form for very small screens - ensure content fits */
+    .upload-form {
+        width: 95%;
+        height: 250px;
+        padding: 35px 30px 35px 30px;
+        gap: 0.2rem;
+    }
+    
+    .choose-file-text {
+        font-size: 0.8rem;
+        margin-bottom: 0.15rem;
+    }
+    
+    .file-input-wrapper {
+        margin-bottom: 0.15rem;
+    }
+    
+    .upload-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    button {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.7rem;
+        margin-top: 0.05rem;
+    }
+    
+    main {
+        padding: 15px 10px;
+    }
+    
+    .analysis-result {
+        padding: 1rem 1.5rem;
+        width: 98%;
+    }
+    
+    .analysis-result h2 {
+        font-size: 1.4rem;
+    }
+    
+    .analysis-result h3,
+    .analysis-result h4,
+    .analysis-result h5,
+    .analysis-result h6 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-content {
+        padding: 20px 15px;
+        margin: 15px;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-content p {
+        font-size: 0.9rem;
+    }
 } 
