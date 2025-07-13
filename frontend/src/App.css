@@ -361,8 +361,8 @@ main {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 700px;
-  height: 400px;
+  width: 800px;
+  height: 500px;
   justify-content: center;
   box-sizing: border-box;
   position: relative;
@@ -709,8 +709,8 @@ button:hover:not(:disabled) {
     }
     
     .upload-form {
-        width: 600px;
-        height: 350px;
+        width: 700px;
+        height: 450px;
         padding: 30px 50px;
     }
     
@@ -792,6 +792,7 @@ button:hover:not(:disabled) {
         padding: 40px 40px 40px 40px;
         margin: 20px auto;
         gap: 0.25rem;
+        position: relative; /* Explicitly set for positioning context */
     }
     
     .choose-file-text {
@@ -808,6 +809,18 @@ button:hover:not(:disabled) {
         height: 35px;
     }
     
+    /* Reverted generic button style and created a specific one for the form button */
+    .upload-form button {
+        position: absolute;
+        bottom: 70px; /* Move it up to be inside the frame */
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+        margin-top: 0;
+        white-space: nowrap; /* Prevent the button text from wrapping */
+    }
+
     button {
         padding: 0.4rem 1rem;
         font-size: 0.8rem;
@@ -909,8 +922,8 @@ button:hover:not(:disabled) {
     /* Adjust upload form for very small screens - ensure content fits */
     .upload-form {
         width: 95%;
-        height: 250px;
-        padding: 35px 30px 35px 30px;
+        height: 210px;
+        padding: 5px 30px 45px 30px;
         gap: 0.2rem;
     }
     
