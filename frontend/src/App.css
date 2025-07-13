@@ -812,13 +812,15 @@ button:hover:not(:disabled) {
     /* Reverted generic button style and created a specific one for the form button */
     .upload-form button {
         position: absolute;
-        bottom: 70px; /* Move it up to be inside the frame */
+        bottom: 30px; /* Position it properly inside the frame */
         left: 50%;
         transform: translateX(-50%);
         padding: 0.4rem 1rem;
         font-size: 0.8rem;
         margin-top: 0;
         white-space: nowrap; /* Prevent the button text from wrapping */
+        width: 130px; /* Fixed width to prevent any shifting */
+        text-align: center;
     }
 
     button {
@@ -923,7 +925,7 @@ button:hover:not(:disabled) {
     .upload-form {
         width: 95%;
         height: 210px;
-        padding: 5px 30px 45px 30px;
+        padding: 25px 30px 55px 30px;
         gap: 0.2rem;
     }
     
@@ -978,5 +980,18 @@ button:hover:not(:disabled) {
     
     .modal-content p {
         font-size: 0.9rem;
+    }
+
+    .upload-form button {
+        position: absolute;
+        bottom: 20px; /* Position it properly inside the smaller frame */
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.3rem 0.8rem;
+        font-size: 0.7rem;
+        margin-top: 0;
+        white-space: nowrap;
+        width: 110px; /* Fixed width for smaller screens */
+        text-align: center;
     }
 } 
