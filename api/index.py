@@ -32,6 +32,11 @@ frontend_dist_path = os.path.join(os.path.dirname(script_dir), 'frontend', 'dist
 app = Flask(__name__, static_folder=frontend_dist_path, static_url_path='')
 CORS(app)  # Allow cross-origin requests
 
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Cross-Origin-Opener-Policy'] = 'same-origin-allow-popups'
+    return response
+
 # API Routes (these must come before the catch-all route)
 @app.route('/api/analyze', methods=['POST'])
 def analyze_image():
@@ -80,4 +85,6 @@ def serve_react_routes(path):
     return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True) 
+    # Get port from environment variable (Railway) or default to 5000 (local development)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False) 
