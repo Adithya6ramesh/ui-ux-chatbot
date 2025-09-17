@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 
 function HomePage() {
     const [file, setFile] = useState(null);
@@ -41,7 +42,7 @@ function HomePage() {
         formData.append('file', file);
 
         try {
-            const res = await axios.post('/api/analyze', formData, {
+            const res = await axios.post(API_ENDPOINTS.analyze, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
