@@ -32,19 +32,16 @@ frontend_dist_path = os.path.join(os.path.dirname(script_dir), 'frontend', 'dist
 app = Flask(__name__, static_folder=frontend_dist_path, static_url_path='')
 
 # Configure CORS to allow requests from the Vercel frontend
+cors_config = {
+    "origins": ["https://ui-ux-chatbot-rspv.vercel.app", "http://localhost:5173", "http://localhost:5000"],
+    "methods": ["GET", "POST", "OPTIONS"],
+    "allow_headers": ["Content-Type"],
+    "supports_credentials": True
+}
+
 CORS(app, resources={
-    r"/api/*": {
-        "origins": ["https://ui-ux-chatbot-rspv.vercel.app", "http://localhost:5173", "http://localhost:5000"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"],
-        "supports_credentials": True
-    },
-    r"/analyze": {
-        "origins": ["https://ui-ux-chatbot-rspv.vercel.app", "http://localhost:5173", "http://localhost:5000"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"],
-        "supports_credentials": True
-    }
+    r"/api/*": cors_config,
+    r"/analyze": cors_config
 })
 
 @app.after_request
