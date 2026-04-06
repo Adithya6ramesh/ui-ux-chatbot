@@ -122,6 +122,7 @@ This application uses an **integrated server architecture**:
     ```
     GEMINI_API_KEY="your_actual_gemini_api_key_here"
     ```
+    Optional: set `GEMINI_MODEL` (default `gemini-2.5-flash`). Use a current model id from the [Gemini models](https://ai.google.dev/gemini-api/docs/models/gemini) list. If you still see 404s, upgrade the Python package: `pip install -U google-generativeai` (this repo pins `0.8.6` or newer).
 
 3.  **Configure Firebase (Optional):**
     Create `frontend/.env` file with your Firebase config:

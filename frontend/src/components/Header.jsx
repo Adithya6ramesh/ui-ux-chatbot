@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { signOutUser } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
@@ -20,23 +20,41 @@ const Header = () => {
 
     return (
         <header className="App-header">
-            <div className="logo-container">
-                <img src={logo} alt="Logo" className="logo-corner" />
-                <h1>Blinky</h1>
-            </div>
-            <div className="header-links">
-                <Link to="/pricing" className="pricing-link-corner">Pricing</Link>
-                {currentUser ? (
-                    <button onClick={handleLogout} className="logout-btn">
-                        Logout
-                    </button>
-                ) : (
-                    <Link to="/login" className="signup-link-corner">Sign In</Link>
-                )}
+            <div className="editorial-top-row">
+                <Link to="/" className="logo-container">
+                    <img src={logo} alt="" className="logo-corner" />
+                    <span className="brand-wordmark">Blinky</span>
+                </Link>
+                <nav className="header-links" aria-label="Primary">
+                    <NavLink
+                        to="/"
+                        end
+                        className={({ isActive }) =>
+                            `pricing-link-corner${isActive ? ' header-nav-link--active' : ''}`
+                        }
+                    >
+                        Home
+                    </NavLink>
+                    <NavLink
+                        to="/features"
+                        className={({ isActive }) =>
+                            `pricing-link-corner${isActive ? ' header-nav-link--active' : ''}`
+                        }
+                    >
+                        Features
+                    </NavLink>
+                    {currentUser ? (
+                        <button type="button" onClick={handleLogout} className="logout-btn">
+                            Log out
+                        </button>
+                    ) : (
+                        <Link to="/login" className="signup-link-corner">Sign in</Link>
+                    )}
+                </nav>
             </div>
             <div className="taglines">
-                <p className="main-tagline">Know your design. Inside out</p>
-                <p className="sub-tagline">AI-powered insights to perfect your UI and deliver user-first experiences.</p>
+                <p className="main-tagline">Know your design. Inside out.</p>
+                <p className="sub-tagline">AI-powered insights to refine your UI and deliver user-first experiences.</p>
             </div>
         </header>
     );

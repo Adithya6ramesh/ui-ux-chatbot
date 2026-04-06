@@ -1,0 +1,210 @@
+/* Editorial Intelligence — tokens from stitch_ui_design_ai/DESIGN.md */
+
+:root {
+  --surface: #f9f9f9;
+  --surface-container-low: #f3f3f4;
+  --surface-container-lowest: #ffffff;
+  --surface-container-high: #e8e8e8;
+  --surface-container: #eeeeee;
+  --background: #f9f9f9;
+  --primary: #000000;
+  --primary-container: #3b3b3b;
+  --on-primary: #e2e2e2;
+  --tertiary: #3b3b3b;
+  --secondary: #5f5e5e;
+  --on-surface: #1a1c1c;
+  --on-surface-variant: #474747;
+  --outline: #777777;
+  --outline-variant: #c6c6c6;
+  --error: #ba1a1a;
+  --primary-fixed: #5e5e5e;
+  --shadow-float: 0 20px 50px rgba(26, 28, 28, 0.06);
+  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.08);
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --radius: 0;
+  --transition-page: opacity 400ms ease, transform 400ms ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body.ds-body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--on-surface);
+  background: var(--surface);
+}
+
+h1,
+h2,
+h3,
+.ds-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.ds-page-enter {
+  animation: dsInkBleed 400ms ease forwards;
+}
+
+@keyframes dsInkBleed {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Primary CTA — machined gradient optional */
+.ds-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.25rem 2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--on-primary);
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-container) 100%);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ds-btn-primary:hover:not(:disabled) {
+  background: var(--tertiary);
+}
+
+.ds-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ds-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ds-btn-secondary {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ds-btn-secondary:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.ds-input-group {
+  text-align: left;
+}
+
+.ds-input-group label {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.ds-input-group:focus-within label {
+  color: var(--primary);
+}
+
+.ds-input {
+  width: 100%;
+  padding: 0.75rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--on-surface);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--outline);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.3s ease, border-width 0.2s ease;
+}
+
+.ds-input::placeholder {
+  color: var(--outline-variant);
+}
+
+.ds-input:focus {
+  border-bottom: 2px solid var(--primary);
+}
+
+.ds-card {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.ds-card:hover {
+  background: var(--surface-container-high);
+  transform: translateY(-2px);
+}
+
+.ds-ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: var(--surface);
+}
+
+.ds-ambient-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(
+    ellipse 80% 50% at 80% 20%,
+    rgba(26, 28, 28, 0.12) 0%,
+    transparent 55%
+  );
+}
+
+.ds-ambient-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38%;
+  height: 100%;
+  background: var(--surface-container-low);
+  transform: skewX(-12deg) translateX(42%);
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--on-primary);
+}

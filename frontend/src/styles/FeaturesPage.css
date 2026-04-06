@@ -1,0 +1,106 @@
+.features-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.features-hero {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.features-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ds-muted, #6b6b6b);
+    margin: 0 0 0.75rem;
+}
+
+.features-title {
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: #0a0a0a;
+    margin: 0 0 1rem;
+}
+
+.features-lead {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #4a4a4a;
+    max-width: 36rem;
+    margin: 0 auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 2.5rem;
+    align-items: start;
+    background: #f7f6f4;
+    border-radius: 2px;
+    padding: 3rem 2.5rem 3.25rem;
+}
+
+.features-col {
+    text-align: left;
+}
+
+.features-col--mid {
+    margin-top: 2.75rem;
+}
+
+.features-rule {
+    width: 2.5rem;
+    height: 4px;
+    background: #0a0a0a;
+    margin-bottom: 1.25rem;
+}
+
+.features-col-title {
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: clamp(1.35rem, 2.2vw, 1.6rem);
+    line-height: 1.2;
+    color: #0a0a0a;
+    margin: 0 0 0.85rem;
+}
+
+.features-col-body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #555;
+    margin: 0;
+}
+
+.features-cta-wrap {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.features-cta {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: #0a0a0a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.features-cta:hover {
+    opacity: 0.75;
+}
+
+@media (max-width: 900px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem;
+    }
+
+    .features-col--mid {
+        margin-top: 0;
+    }
+}
