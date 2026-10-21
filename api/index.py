@@ -6,6 +6,7 @@ import traceback
 from io import BytesIO
 
 import google.generativeai as genai
+from google.api_core import exceptions as google_exceptions
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
@@ -24,6 +25,11 @@ if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
 
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+
+# Downscale uploads so the longest side is at most this many pixels before sending to Gemini
+MAX_IMAGE_SIDE = 1600
+# Give up on the Gemini call before the gunicorn worker timeout (180s) kills the request
+GEMINI_TIMEOUT_SECONDS = 120
 
 prompt_path = os.path.join(script_dir, 'prompt.txt')
 with open(prompt_path, 'r', encoding='utf-8') as f:
@@ -308,6 +314,7 @@ def analyze_image():
         # Ensure RGB for models that reject palette modes
         if img.mode not in ('RGB', 'RGBA'):
             img = img.convert('RGB')
+        img.thumbnail((MAX_IMAGE_SIDE, MAX_IMAGE_SIDE), Image.LANCZOS)
     except Exception as e:
         return jsonify({'error': f'Invalid image file: {e}'}), 400
 
@@ -322,6 +329,7 @@ def analyze_image():
         response = model.generate_content(
             [prompt_text, img],
             generation_config=generation_config,
+            request_options={'timeout': GEMINI_TIMEOUT_SECONDS},
         )
         elapsed = time.perf_counter() - t0
 
@@ -345,6 +353,9 @@ def analyze_image():
         }
 
         return jsonify({'structured': structured})
+    except google_exceptions.DeadlineExceeded:
+        traceback.print_exc()
+        return jsonify({'error': 'Analysis timed out. Please try again with a smaller image.'}), 504
     except json.JSONDecodeError as e:
         traceback.print_exc()
         return jsonify({'error': f'Invalid JSON from model: {e}'}), 500
