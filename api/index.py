@@ -24,7 +24,7 @@ if not GEMINI_API_KEY:
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
 
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.6-flash')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.8-flash')
 
 # Downscale uploads so the longest side is at most this many pixels before sending to Gemini
 MAX_IMAGE_SIDE = 1600
